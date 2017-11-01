@@ -18,7 +18,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ImageView mHeader_iv;
 
@@ -62,7 +62,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-
     /**
      * 从相机获取图片
      */
@@ -74,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //判断版本
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {   //如果在Android7.0以上,使用FileProvider获取Uri
             intent.setFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-            Uri contentUri = FileProvider.getUriForFile(MainActivity.this, "com.hansion.chosehead", tempFile);
+            Uri contentUri = FileProvider.getUriForFile(MainActivity.this, "com.love.cropimage", tempFile);
             intent.putExtra(MediaStore.EXTRA_OUTPUT, contentUri);
             Log.e("dasd", contentUri.toString());
         } else {    //否则使用Uri.fromFile(file)方法获取Uri
@@ -119,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (resultCode == RESULT_OK) {
                     //用相机返回的照片去调用剪裁也需要对Uri进行处理
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                        Uri contentUri = FileProvider.getUriForFile(MainActivity.this, "com.hansion.chosehead", tempFile);
+                        Uri contentUri = FileProvider.getUriForFile(MainActivity.this, "com.love.cropimage", tempFile);
                         cropPhoto(contentUri);
                     } else {
                         cropPhoto(Uri.fromFile(tempFile));
